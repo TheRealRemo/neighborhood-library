@@ -60,5 +60,9 @@ public class Book {
         this.checkedOutTo = name;
         this.isCheckedOut = true;
     }
+    public void checkIn(){
+        this.checkedOutTo = "";
+        this.isCheckedOut = false;
+    }
 }
 

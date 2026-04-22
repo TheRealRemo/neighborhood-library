@@ -48,35 +48,61 @@ public class LibraryApp {
 
             switch (command) {
                 case 1:
-                    for (Book book: books)
+                    for (Book book : books)
                         if (!book.isCheckedOut()) {
                             System.out.printf("ID: %d | ISBN: %s | Title: %s%n",
                                     book.getId(), book.getIsbn(), book.getTitle());
                         }
-                    System.out.print("Would you like to select a book or return to home?(C/X): ");
+                    System.out.print("Would you like to check out a book or return to home?(C/X): ");
                     String action = scanner.nextLine().toUpperCase();
-                    if (action.equals("C")){
+                    if (action.equals("C")) {
                         System.out.print("Please enter the ID of the book you want: ");
                         int id = scanner.nextInt();
                         scanner.nextLine();
                         System.out.print("Enter your name: ");
                         String name = scanner.nextLine();
-                        for (Book book : books){
-                            if (book != null && book.getId() == id){
+                        for (Book book : books) {
+                            if (book != null && book.getId() == id) {
                                 book.checkOut(name);
                                 System.out.println("Book checked out!");
                             }
                         }
-                    }else if (action.equalsIgnoreCase("X")){
-                        System.out.println("Returning to home screen..");
+                    } else if (action.equalsIgnoreCase("X")) {
+                        System.out.println("\nReturning to home screen..\n");
                     }
                     break;
                 case 2:
-
+                    boolean found = false;
+                    for (Book book : books)
+                        if (book.isCheckedOut()) {
+                            System.out.printf("ID: %d | ISBN: %s | Title: %s%n | Checked out to: %s%n",
+                                    book.getId(), book.getIsbn(), book.getTitle(), book.getCheckedOutTo());
+                            found = true;
+                        }
+                    if(!found){
+                        System.out.println("\nNo books are currently checked out.\n");
+                        break;
+                    }
+                    System.out.print("Would you like to check in a book or return to home?(C/X): ");
+                    String input = scanner.nextLine().toUpperCase();
+                    if (input.equals("C")) {
+                        System.out.print("Please enter the ID of the book: ");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        for (Book book : books) {
+                            if (book.getId() == id) {
+                                book.checkIn();
+                                System.out.println("\nBook checked in!\n");
+                            }
+                        }
+                    } else if (input.equalsIgnoreCase("X")) {
+                        System.out.println("\nReturning to home screen..\n");
+                    }
                     break;
                 case 0:
                     isDone = true;
                     System.out.println("Goodbye!");
+                    break;
                 default:
                     System.out.println("\nInvalid input please try again.\n");
 
