@@ -1,19 +1,19 @@
 package com.pluralsight;
 
-public class LibraryBookInfo {
+public class Book {
     //Attributes
     int id;
     String isbn;
     String title;
     boolean isCheckedOut;
-    String CheckedOutTo;
+    String checkedOutTo;
 
-    public LibraryBookInfo(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) {
+    public Book(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.isCheckedOut = isCheckedOut;
-        CheckedOutTo = checkedOutTo;
+        this.checkedOutTo = checkedOutTo;
     }
 
     public int getId() {
@@ -49,12 +49,16 @@ public class LibraryBookInfo {
     }
 
     public String getCheckedOutTo() {
-        return CheckedOutTo;
+        return checkedOutTo;
     }
 
     public void setCheckedOutTo(String checkedOutTo) {
-        CheckedOutTo = checkedOutTo;
+        checkedOutTo = checkedOutTo;
     }
 
+    public void checkOut(String name) {
+        this.checkedOutTo = name;
+        this.isCheckedOut = true;
+    }
 }
 
