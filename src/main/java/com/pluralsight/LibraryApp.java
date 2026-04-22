@@ -67,7 +67,9 @@ public class LibraryApp {
                                 System.out.println("Book checked out!");
                             }
                         }
-                    }else {}
+                    }else if (action.equalsIgnoreCase("X")){
+                        System.out.println("Returning to home screen..");
+                    }
                     break;
                 case 2:
 
